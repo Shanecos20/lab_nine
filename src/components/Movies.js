@@ -1,16 +1,13 @@
-import MovieItem from "./MovieItem";
+import React from 'react';  // Import React
+import MovieItem from './MovieItem';  // Import MovieItem component
 
 // Movies component to render a list of MovieItem components
-function Movies(props) {
-    return (
-        <div>
-            {/* Looping through the 'myMovies' array and rendering a MovieItem for each movie */}
-            {props.myMovies.map((movie) => (
-                // Rendering a MovieItem component for each movie in the array
-                <MovieItem mymovie={movie} key={movie.imdbID} />
-            ))}
-        </div>
-    );
-}
+const Movies = ({ myMovies }) => (
+    <div>
+        {myMovies?.map(movie => (
+            <MovieItem mymovie={movie} key={movie.imdbID} />  // Rendering each movie item
+        ))}
+    </div>
+);
 
 export default Movies;
