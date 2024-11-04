@@ -9,7 +9,7 @@ const Read = () => {
     // useEffect hook to fetch movie data when the component mounts
     useEffect(() => {
         // Making a GET request to fetch the movie data
-        axios.get('https://jsonblob.com/api/jsonblob/1287718524221775872')
+        axios.get('http://localhost:4000/api/movies')
             .then(response => {
                 // Update state with the 'movies' array from the response
                 setData(response.data.movies);
