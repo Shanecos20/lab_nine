@@ -3,9 +3,9 @@ import React from 'react';
 // Defining the Content component to display some content including the current time
 const Content = () => {
   return (
-    <div className="text-center text-primary">
+    <div className="text-center text-dark">
       {/* Displaying a simple "Hello World!" message */}
-      <h1>Hello World!</h1>
+      <h1>Movie App</h1>
       {/* Displaying the current time, updated each time the component refreshes */}
       <h2>It is {new Date().toLocaleTimeString()}</h2>
     </div>

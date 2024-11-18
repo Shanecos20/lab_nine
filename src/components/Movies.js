@@ -5,7 +5,7 @@ import MovieItem from './MovieItem';  // Import MovieItem component
 const Movies = ({ myMovies }) => (
     <div>
         {myMovies?.map(movie => (
-            <MovieItem mymovie={movie} key={movie.imdbID} />  // Rendering each movie item
+            <MovieItem mymovie={movie} key={movie.movie_id} />  // Rendering each movie item
         ))}
     </div>
 );

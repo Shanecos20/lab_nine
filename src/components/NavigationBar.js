@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 // Defining the NavigationBar component to handle navigation links
 const NavigationBar = () => {
   return (
-    // Bootstrap Navbar component with light background and expand on large screens
-    <Navbar bg="light" expand="lg">
+    // Bootstrap Navbar component with dark background and expand on large screens
+    <Navbar bg="dark" variant="dark" expand="lg">
       {/* Brand name for the application */}
       <Navbar.Brand href="#">React App</Navbar.Brand>
       {/* Navigation links using react-router-dom's Link component */}
@@ -21,4 +21,4 @@ const NavigationBar = () => {
   );
 };
 
-export default NavigationBar; // Exporting the NavigationBar component for use in other components
+export default NavigationBar; // Exporting the NavigationBar component for

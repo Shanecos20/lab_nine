@@ -22,7 +22,7 @@ const Read = () => {
 
     return (
         <div>
-            <h1 className="text-center text-primary">Read Component!</h1>
+            <h1 className="text-center text-dark">Movies List</h1>
             {/* Passing the fetched data to the Movies component as a prop */}
             <Movies myMovies={data} />
         </div>

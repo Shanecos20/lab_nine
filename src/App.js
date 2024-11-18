@@ -7,6 +7,8 @@ import Content from './components/Content';
 import Footer from './components/Footer';
 import Read from './components/Read';
 import Create from './components/Create';
+import Edit from './components/Edit';
+
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         <Route path="/read" element={<Read />} />
         {/* Route to the Create page, rendering a simple message */}
         <Route path="/create" element={<Create />} />
+        <Route path="/edit/:id" element={<Edit />} />
       </Routes>
       {/* Footer component that will be visible on all pages */}
       <Footer />
