@@ -1,16 +1,37 @@
 import React, { useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 // Importing components from react-bootstrap for UI styling
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 function MovieItem(props) {
-  // Using useEffect to log the movie details whenever 'mymovie' prop changes
+  // Destructure props for cleaner access
+  const { mymovie, Reload } = props;
+
+  // Log movie details whenever 'mymovie' prop changes
   useEffect(() => {
-    console.log("Movie Item:", props.mymovie);
-  }, [props.mymovie]);
+    console.log("Movie Item:", mymovie);
+  }, [mymovie]);
+
+  // Handler for deleting a movie
+  const handleDelete = (e) => {
+    e.preventDefault();
+    // Confirm deletion with the user
+    if (window.confirm(`Are you sure you want to delete "${mymovie.title}"?`)) {
+      axios.delete(`http://localhost:4000/api/movie/${mymovie._id}`)
+        .then(() => {
+          Reload(); // Refresh the movie list after deletion
+        })
+        .catch((error) => {
+          console.error("Error deleting movie:", error);
+          alert("Failed to delete the movie. Please try again.");
+        });
+    }
+  };
 
   return (
     <Container className="mb-4">
@@ -19,27 +40,44 @@ function MovieItem(props) {
           {/* Card component to display movie details */}
           <Card className="shadow-sm">
             {/* Displaying the title of the movie in the card header */}
-            <Card.Header className="text-center" style={{ backgroundColor: '#CCF7FF', color: 'black' }}>
-              {props.mymovie.title}
+            <Card.Header 
+              className="text-center" 
+              style={{ backgroundColor: '#CCF7FF', color: 'black' }}
+            >
+              {mymovie.title}
             </Card.Header>
             <Card.Body className="text-center">
               {/* Displaying the movie poster image */}
               <Card.Img 
                 variant="top" 
-                src={props.mymovie.poster} 
-                alt={props.mymovie.title} 
+                src={mymovie.poster} 
+                alt={mymovie.title} 
                 className="img-fluid mb-3"
-                style={{ maxHeight: '100%', maxWidth: '100%', height: 'auto', objectFit: 'contain' }}
+                style={{ maxHeight: '400px', maxWidth: '100%', height: 'auto', objectFit: 'contain' }}
               />
-              {/* Displaying the year of the movie in the footer */}
+              {/* Displaying the year of the movie */}
               <blockquote className="blockquote mb-0">
                 <footer className="blockquote-footer">
-                  Year: <cite title="Movie Year">{props.mymovie.year}</cite>
+                  Year: <cite title="Movie Year">{mymovie.year}</cite>
                 </footer>
               </blockquote>
             </Card.Body>
-            <Link to={"/edit/" + props.mymovie._id} className="btn btn-dark">Edit</Link>
-            </Card>
+            {/* Action buttons: Edit and Delete */}
+            <Card.Footer className="text-center">
+              <Link 
+                to={`/edit/${mymovie._id}`} 
+                className="btn btn-dark me-2"
+              >
+                Edit
+              </Link>
+              <Button 
+                variant="danger" 
+                onClick={handleDelete}
+              >
+                Delete
+              </Button>
+            </Card.Footer>
+          </Card>
         </Col>
       </Row>
     </Container>

@@ -91,7 +91,15 @@ app.put('/api/movie/:id', async (req, res) => {
   }
 });
 
+// Define delete route to delte a movie based on ID
+app.delete('/api/movie/:id', async (req, res)=> {
+  const movie = await Movie.findByIdAndDelete(req.params.id);
+  res.status(200).send("Deleted movie: "+movie);
+})
+
+
 // Start the server and listen on the specified port
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
